@@ -1,5 +1,7 @@
 # World-conflict map / TUI
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 A self-contained curses app: a braille-rendered world map (port of
 [Terrascope](https://github.com/a-shygun/Terrascope)'s rendering) showing the
 world-conflict intel pipeline — ranked conflicts, a red heat overlay, UCDP
@@ -109,3 +111,10 @@ conflictmap/
 data/                bundled Natural Earth GeoJSON, starter nodes.db,
                      runtime newsgather.db (created on first refresh)
 ```
+
+## License
+
+MIT — see [LICENSE](LICENSE). The vendored `intel/` and `cot/` packages come
+from the sibling mini-ATAK project; the Terrascope-derived rendering code
+(`core/`, `ui/`, parts of `mapdata.py`) is adapted from
+[Terrascope](https://github.com/a-shygun/Terrascope) (MIT).
