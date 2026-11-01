@@ -110,7 +110,16 @@ conflictmap/
   cot/               vendored CoT multicast listener/parser
 data/                bundled Natural Earth GeoJSON, starter nodes.db,
                      runtime newsgather.db (created on first refresh)
+cyberether/          companion CyberEther flowgraph (see cyberether/README.md)
 ```
+
+## CyberEther companion
+
+`cyberether/` holds the same conflict map as a
+[CyberEther](https://github.com/luigifcruz/CyberEther) flowgraph: python
+blocks read `data/newsgather.db`, render heat/dots/links into an RGBA frame
+tensor, and CyberEther's native `frame` block displays it. Same database, no
+separate pipeline — refresh here, run `cyberether/run.sh` to watch it live.
 
 ## License
 
