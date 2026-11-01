@@ -1,0 +1,4 @@
+# Tested with Python 3.12 (conda env `core`), macOS arm64 + Linux aarch64
+numpy>=1.24     # braille raster maths (core/view.py)
+Pillow>=10      # line/coverage rasters, land mask blur
+requests>=2.31  # intel/ news gathering, UCDP CSV, Ollama client

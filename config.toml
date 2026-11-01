@@ -1,0 +1,40 @@
+# terrascope_conflicts — terminal world-conflict map.
+# Same [intel] schema as the sibling Qt app (../new/config.toml); paths are
+# relative to this directory (never the CWD you launch from).
+
+[cot]                    # CoT multicast listener (receive-only)
+enabled = false          # set true to listen for ATAK/CoT tracks on the LAN
+group = "239.2.3.1"
+port = 6969
+
+[intel]                  # world-conflict pipeline (terrascope_conflicts.intel)
+db = "data/newsgather.db"
+refresh_min = 0          # background gather+rank+summarize every N min; 0 = manual (U)
+gather = true            # fetch news/UCDP before ranking
+summarize = true         # local chat model writes level/trend/summary + world brief
+model = "huggingface.co/TeskesLab/Liberation-Qwen3-8B:Q4_K_M"
+# ollama_host = "http://127.0.0.1:11434"   # another machine's Ollama, e.g. from a Pi
+reranker_model = "gpustack/bge-reranker-v2-m3-GGUF:Q4_K_M"
+reranker_port = 8091     # on-demand llama-server, stopped after the run
+hours = 72               # article window (by first seen)
+max_age_days = 14        # ...and published within this many days
+keep = 12                # ranked articles per conflict kept as evidence
+min_score = -5.0         # reranker floor; lower = more (noisier) evidence
+
+[aggression]             # conflict overlay (diamonds + heat)
+enabled = true
+ttl_hours = 24.0         # conflict points vanish when the assessment is older
+manual_ttl_hours = 2.0
+min_level = 1            # hide conflicts below this situation level
+show_events = true       # UCDP event dots (fatal incidents)
+events_days = 30
+
+[links]                  # correlation lines between conflicts/entities
+enabled = true
+labels = true            # draw the strongest reason at each link's midpoint
+min_strength = 2.0       # conflict<->conflict threshold (1 = shared report/country alone)
+entity_min_strength = 2.0
+radius_km = 150.0        # node/track/point within this of a conflict or its incidents
+nodes = true
+tracks = true
+points = true
