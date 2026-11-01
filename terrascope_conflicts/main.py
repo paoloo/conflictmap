@@ -105,6 +105,7 @@ def main(argv=None) -> int:
         return 1
 
     cfg, basemap, conflicts, links, tracks_layer = build(Path(args.config))
+    data_mod.ensure_nodes_db(data_mod.PROJECT_NODES_DB)
     basemap.set_data(labels, places)
 
     layers = [basemap, links, conflicts, tracks_layer]

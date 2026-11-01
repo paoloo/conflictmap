@@ -16,6 +16,7 @@ from __future__ import annotations
 import queue
 import sqlite3
 import threading
+import time
 from pathlib import Path
 from typing import Any, Callable
 
@@ -60,8 +61,46 @@ class DataLoader:
             results.append((kind, name, payload))
 
 
+NODES_SCHEMA = """
+CREATE TABLE IF NOT EXISTS nodes (
+    uid TEXT PRIMARY KEY,
+    lat REAL NOT NULL,
+    lon REAL NOT NULL,
+    title TEXT NOT NULL,
+    text TEXT NOT NULL DEFAULT '',
+    attachment TEXT NOT NULL DEFAULT '',
+    created TEXT NOT NULL,
+    updated TEXT NOT NULL,
+    author TEXT NOT NULL DEFAULT '',
+    remote INTEGER NOT NULL DEFAULT 0,
+    type TEXT NOT NULL DEFAULT 'text',
+    data TEXT NOT NULL DEFAULT '{}'
+)
+"""
+
+
+def ensure_nodes_db(db_path: Path) -> None:
+    """Create the nodes store on first run (it ships empty — runtime state is
+    not committed). One placeholder row so the correlation layer has a target."""
+    if db_path.exists():
+        return
+    db_path.parent.mkdir(parents=True, exist_ok=True)
+    conn = sqlite3.connect(str(db_path))
+    try:
+        conn.executescript(NODES_SCHEMA)
+        now = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+        conn.execute(
+            "INSERT OR IGNORE INTO nodes (uid, lat, lon, title, text, created, updated,"
+            " author, remote, type) VALUES ('home', 0.0, 0.0, 'Home',"
+            " 'Starter node: your own marker. Edit or delete in any sqlite client.',"
+            " ?, ?, 'starter', 0, 'marker')", (now, now))
+        conn.commit()
+    finally:
+        conn.close()
+
+
 def load_nodes(db_path: Path) -> list[dict]:
-    """Nodes from the Qt app's store, read-only."""
+    """Nodes from the local store, read-only."""
     if not db_path.exists():
         return []
     conn = sqlite3.connect(f"file:{db_path}?mode=ro", uri=True, timeout=5)

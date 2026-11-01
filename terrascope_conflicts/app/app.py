@@ -9,6 +9,7 @@ markers, legend, scale) -> bottom panel (info/brief/ranking).
 from __future__ import annotations
 
 import curses
+import queue
 import time
 from datetime import datetime, timezone
 

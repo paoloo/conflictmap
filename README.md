@@ -9,6 +9,14 @@ No Qt, no sibling project needed: the intel pipeline (gather → match →
 rerank → summarize → brief) is vendored under `terrascope_conflicts/intel/`,
 map data ships in `data/naturalearth/`, and everything else is stdlib.
 
+## Screenshots
+
+![World view: conflict heat, diamonds, UCDP dots, correlation links](docs/images/world-map.png)
+*World view — conflict heat, ranked diamonds, UCDP incidents, correlation links (Haiti↔Sudan arcs visible), ranking panel at the bottom.*
+
+![Europe/Middle East close-up at higher zoom](docs/images/europe-closeup.png)
+*Close-up over Europe and the Middle East — per-conflict labels, shared-report links, UCDP dots.*
+
 ## Install
 
 ```bash
