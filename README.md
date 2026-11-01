@@ -1,11 +1,11 @@
 # World-conflict map / TUI
 
-a self-contained curses app: a braille-rendered world map (port of
+A self-contained curses app: a braille-rendered world map (port of
 [Terrascope](https://github.com/a-shygun/Terrascope)'s rendering) showing the
 world-conflict intel pipeline — ranked conflicts, a red heat overlay, UCDP
 event dots, correlation lines — plus CoT multicast tracks.
 
-the intel pipeline (gather → match →
+The intel pipeline (gather → match →
 rerank → summarize → brief) is vendored under `conflictmap/intel/`,
 map data ships in `data/naturalearth/`, and everything else is stdlib.
 
