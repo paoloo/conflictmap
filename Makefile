@@ -10,16 +10,16 @@ PY     ?= $(if $(wildcard $(ROOT)/.venv/bin/python),$(ROOT)/.venv/bin/python,con
 .PHONY: run test deps clean help
 
 run:            ## start the terminal app
-	cd "$(ROOT)" && $(PY) -m terrascope_conflicts --config $(CONFIG)
+	cd "$(ROOT)" && $(PY) -m conflictmap --config $(CONFIG)
 
 test:           ## import + render smoke checks (no terminal needed)
 	cd "$(ROOT)" && conda run -n $(ENV) python -c "\
 import sys; sys.path.insert(0, '.');\
-import terrascope_conflicts.main as m;\
+import conflictmap.main as m;\
 cfg, basemap, conflicts, links, tracks = m.build(m.PACKAGE_ROOT / 'config.toml');\
 rings, labels, places = m.load_map_data();\
 basemap.set_data(labels, places);\
-from terrascope_conflicts.core import world as wm;\
+from conflictmap.core import world as wm;\
 w = wm.WorldMap([], [basemap, links, conflicts, tracks]);\
 w.set_prepared_countries(wm.prepare_ring_set(rings));\
 f = w.render(160, 48);\

@@ -1,4 +1,4 @@
-"""python -m terrascope_conflicts"""
+"""python -m conflictmap"""
 from .main import main
 
 if __name__ == "__main__":

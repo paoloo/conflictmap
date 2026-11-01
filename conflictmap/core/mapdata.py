@@ -12,7 +12,7 @@ import json
 import math
 from pathlib import Path
 
-# tui/terrascope_conflicts/core/mapdata.py → package root (tui/) → data/.
+# tui/conflictmap/core/mapdata.py → package root (tui/) → data/.
 DATA_DIRS = [
     Path(__file__).resolve().parents[2] / "data" / "naturalearth",
     Path(__file__).resolve().parents[2] / "data",

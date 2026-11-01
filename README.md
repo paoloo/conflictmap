@@ -1,12 +1,12 @@
-# tui — Terrascope-style terminal world-conflict map
+# World-conflict map / TUI
 
-Self-contained curses app: a braille-rendered world map (port of
+a self-contained curses app: a braille-rendered world map (port of
 [Terrascope](https://github.com/a-shygun/Terrascope)'s rendering) showing the
 world-conflict intel pipeline — ranked conflicts, a red heat overlay, UCDP
 event dots, correlation lines — plus CoT multicast tracks.
 
-No Qt, no sibling project needed: the intel pipeline (gather → match →
-rerank → summarize → brief) is vendored under `terrascope_conflicts/intel/`,
+the intel pipeline (gather → match →
+rerank → summarize → brief) is vendored under `conflictmap/intel/`,
 map data ships in `data/naturalearth/`, and everything else is stdlib.
 
 ## Screenshots
@@ -31,7 +31,7 @@ Python 3.11+ (3.12 tested). curses is stdlib on macOS/Linux; on Windows use
 ## Run
 
 ```bash
-python -m terrascope_conflicts          # or: make run
+python -m conflictmap          # or: make run
 ```
 
 First launch renders the world immediately. The status line says
@@ -97,7 +97,7 @@ CWD). Sensible single-file defaults; `db = "data/newsgather.db"`.
 ## Layout
 
 ```
-terrascope_conflicts/
+conflictmap/
   main.py            entry point, wiring
   app/               data loading, refresh worker, CoT adapter, config
   core/              map maths, layer base, world state (ported from Terrascope)

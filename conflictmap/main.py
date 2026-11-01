@@ -8,24 +8,24 @@ from pathlib import Path
 
 PACKAGE_ROOT = Path(__file__).resolve().parents[1]   # tui/
 
-from terrascope_conflicts.app.app import ConflictApp            # noqa: E402
-from terrascope_conflicts.app import data as data_mod           # noqa: E402
-from terrascope_conflicts.app.data import DataLoader               # noqa: E402
-from terrascope_conflicts.app.refresh import RefreshWorker         # noqa: E402
-from terrascope_conflicts.app.tracks import TrackFeed           # noqa: E402
-from terrascope_conflicts.core import world as world_mod        # noqa: E402
-from terrascope_conflicts.core.config import MAP_CONFIG         # noqa: E402
-from terrascope_conflicts.core.mapdata import (MapDataError,     # noqa: E402
+from conflictmap.app.app import ConflictApp            # noqa: E402
+from conflictmap.app import data as data_mod           # noqa: E402
+from conflictmap.app.data import DataLoader               # noqa: E402
+from conflictmap.app.refresh import RefreshWorker         # noqa: E402
+from conflictmap.app.tracks import TrackFeed           # noqa: E402
+from conflictmap.core import world as world_mod        # noqa: E402
+from conflictmap.core.config import MAP_CONFIG         # noqa: E402
+from conflictmap.core.mapdata import (MapDataError,     # noqa: E402
                                                load_country_labels, load_places,
                                                load_polygons)
-from terrascope_conflicts.layers.basemap import BasemapLayer     # noqa: E402
-from terrascope_conflicts.layers.conflicts import ConflictLayer  # noqa: E402
-from terrascope_conflicts.layers.links import LinksLayer         # noqa: E402
-from terrascope_conflicts.layers.tracks import TracksLayer       # noqa: E402
+from conflictmap.layers.basemap import BasemapLayer     # noqa: E402
+from conflictmap.layers.conflicts import ConflictLayer  # noqa: E402
+from conflictmap.layers.links import LinksLayer         # noqa: E402
+from conflictmap.layers.tracks import TracksLayer       # noqa: E402
 
 
 def build(config_path: Path | None):
-    from terrascope_conflicts.app.config import load_config, AppConfig
+    from conflictmap.app.config import load_config, AppConfig
     cfg = load_config(str(config_path)) if config_path and config_path.exists() else AppConfig()
 
     # intel.db is relative to the package root, never the CWD (refresh and
@@ -90,11 +90,11 @@ def main(argv=None) -> int:
     # curses needs a real terminal on stdin/stdout. `conda run` without
     # --no-capture-output pipes them and cbreak() fails instantly.
     if not (sys.stdin.isatty() and sys.stdout.isatty()):
-        print("terrascope_conflicts needs a terminal (stdin/stdout are not a TTY).\n"
+        print("conflictmap needs a terminal (stdin/stdout are not a TTY).\n"
               "Run it as:\n"
-              "  conda run --no-capture-output -n core python -m terrascope_conflicts\n"
+              "  conda run --no-capture-output -n core python -m conflictmap\n"
               "or activate the env first:\n"
-              "  conda activate core && python -m terrascope_conflicts",
+              "  conda activate core && python -m conflictmap",
               file=sys.stderr)
         return 2
 

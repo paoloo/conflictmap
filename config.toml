@@ -1,4 +1,4 @@
-# terrascope_conflicts — terminal world-conflict map.
+# conflictmap — terminal world-conflict map.
 # Same [intel] schema as the sibling Qt app (../new/config.toml); paths are
 # relative to this directory (never the CWD you launch from).
 
@@ -7,7 +7,7 @@ enabled = false          # set true to listen for ATAK/CoT tracks on the LAN
 group = "239.2.3.1"
 port = 6969
 
-[intel]                  # world-conflict pipeline (terrascope_conflicts.intel)
+[intel]                  # world-conflict pipeline (conflictmap.intel)
 db = "data/newsgather.db"
 refresh_min = 0          # background gather+rank+summarize every N min; 0 = manual (U)
 gather = true            # fetch news/UCDP before ranking

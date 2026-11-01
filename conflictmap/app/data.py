@@ -20,7 +20,7 @@ import time
 from pathlib import Path
 from typing import Any, Callable
 
-# tui/terrascope_conflicts/app/data.py → parents: app, terrascope_conflicts, tui
+# tui/conflictmap/app/data.py → parents: app, conflictmap, tui
 PACKAGE_ROOT = Path(__file__).resolve().parents[2]
 DATA_DIR = PACKAGE_ROOT / "data"
 PROJECT_NODES_DB = DATA_DIR / "nodes.db"
