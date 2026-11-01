@@ -20,7 +20,8 @@ map data ships in `data/naturalearth/`, and everything else is stdlib.
 ## Install
 
 ```bash
-cd tui
+git clone https://github.com/paoloo/conflictmap
+cd conflictmap
 python3 -m venv .venv && source .venv/bin/activate   # or use conda
 pip install -r requirements.txt
 ```
